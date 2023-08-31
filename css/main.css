@@ -1,0 +1,316 @@
+/* Variables de colores */
+:root {
+  --text-color: #292626;
+  --primary-color: #CB463B;
+  --secondary-color: #FFE7BE;
+}
+
+/* Reset de estilos */
+body, h1, h2, h3, p, a, img {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: 'Arial', sans-serif;
+  vertical-align: baseline;
+  color: var --secondary-color; 
+  }
+
+body {
+  margin-left: 20px; /* Espaciado desde el lateral */
+  margin-top: 20px;  /* Espaciado desde el encabezado */
+  text-align: left;  /* Alineación del texto a la izquierda */
+}
+
+h2 { 
+  margin-top: 20px; 
+}
+
+h2 + p, p + img {
+  margin-top: 20px;  
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img + p {
+
+  margin-top: 20px;  
+}
+/* Estilos generales */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f7f7;
+}
+
+/* Encabezado */
+header, .header {
+  background-color: var(--primary-color);
+  color: var(--secondary-color); 
+  padding: 20px 0;
+  text-align: center;
+  display: flex;        
+  align-items: center; 
+  justify-content: center; 
+}
+
+/* Botones e imagen */
+.botones, .imagen-central {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+.explorar-boton {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  display: inline-block;
+  margin: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.imagen-central img, .logo-container img {
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+
+/* Contenido principal */
+.main-content {
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* Pie de página */
+.barra-inferior {
+  background-color: var(--primary-color);
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;  
+  align-items: center;  
+  flex-wrap: wrap;
+}
+
+.boton-barra {
+  color: var(--secondary-color);
+  text-decoration: none;
+  background-color: var(--primary-color);
+  transition: opacity 0.3s ease;
+  margin: 5px; 
+  padding: 5px 10px;
+}
+
+.boton-barra:hover {
+  opacity: 0.7;
+}
+
+/* Redes sociales */
+.redes-sociales {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.redes-sociales a {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 5px;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.redes-sociales a img {
+  max-width: 24px;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .redes-sociales a {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .redes-sociales a {
+    font-size: 1rem;
+  }
+}
+
+
+/* Banner de cookies */
+.cookies-banner {
+  display: none;
+  background-color: #222;
+  color: var(--secondary-color);
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.select-cookies {
+  margin: 10px 0;
+  padding: 5px;
+}
+
+.cookies-banner button {
+  background-color: var(--primary-color);
+  border: none;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Variables */
+:root {
+  --text-color: #333;
+  --primary-color: #CB463B;
+  --secondary-color: #FFE7BE;
+}
+
+/* Formularios */
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  font-family: 'Arial', sans-serif;
+  max-width: 100%;
+  margin: auto;
+}
+
+label {
+  display: block;
+  margin: 15px 0 5px 0;  /* Espacio antes y después del texto de la etiqueta */
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"],
+select,
+textarea {
+  width: 75%;  /* Aquí se cambia para que ocupe 3/4 partes */
+  padding: 12px;
+  margin-top: 5px; /* Espaciado después de la etiqueta */
+  margin-bottom: 15px; /* Espacio después del campo de entrada */
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  font-size: 1em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--primary-color);
+}
+
+input[type="checkbox"] {
+  margin: 0 10px 0 0; /* Margin right de 10px para el checkbox */
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Marca campos obligatorios */
+input[required]:before {
+  content: "*";
+  color: var(--primary-color);
+  margin-right: 5px;
+  position: absolute;
+  margin-left: -20px;
+}
+
+.register-btn {
+  display: block;
+  margin: 20px 0; /* esto añade 20px de margen arriba y abajo de cada botón */
+}
+/* Contenedor para centrar los productos */
+.product-container {
+  text-align: center;
+}
+
+/* Product Grid */
+.product {
+  border: 1px solid #ddd;
+  margin: 20px;
+  padding: 15px;
+  background-color: #fff;
+  text-align: center;
+  min-height: 250px; /* Ajusta según tus necesidades */
+  vertical-align: top; /* Alineación vertical en caso de que las casillas sean de diferentes alturas */
+}
+
+.product img {
+  max-width: 100%;
+}
+
+/* Add some breathing room around text and elements */
+p, h2, h3, input, button {
+  margin: 10px 0;
+}
+
+/* Button styles */
+button {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Resumen styles */
+.resumen-pedido {
+  display: none; /* Hidden by default */
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Make it responsive */
+@media (min-width: 768px) {
+  .product {
+    display: inline-block;
+    width: calc(33.333% - 40px); /* Three items per row */
+  }
+}
