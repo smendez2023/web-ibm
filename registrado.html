@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resumen de Pedido</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="imagenes/BARNA.png" alt="Logo de BarnaBurguer" class="logo">
+      <h1>Registrado</h1>
+    </div>
+  </header>
+
+  <div class="resumen-screen">
+    <h2>Resumen de pedido:</h2>
+    <pre id="pedido-resumen"></pre>
+    <div class="form-container">
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Contraseña" required>
+      <button onclick="proceedToPayment()">Proceder al pago</button>
+      <a href="#" onclick="toggleForgotPassword()">¿No recuerdas la contraseña?</a>
+      <div class="forgot-password-container" id="forgot-password-container">
+        <input type="email" placeholder="Email" required>
+        <button onclick="sendNewPassword()">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function proceedToPayment() {
+      // Aquí se puede agregar la lógica para procesar el pago y redirigir a la página de pago
+      alert("Procesando pago...");
+    }
+
+    function toggleForgotPassword() {
+      var forgotPasswordContainer = document.getElementById("forgot-password-container");
+      forgotPasswordContainer.classList.toggle("show");
+    }
+
+    function sendNewPassword() {
+      var emailInput = document.querySelector("#forgot-password-container input[type='email']");
+      var email = emailInput.value;
+      
+      // Aquí se puede agregar la lógica para enviar una nueva contraseña al correo electrónico proporcionado
+      alert("Se ha enviado una nueva contraseña al correo electrónico: " + email);
+    }
+
+    // Obtener el resumen del pedido almacenado en la sesión
+    var cartItems = JSON.parse(sessionStorage.getItem("cartItems"));
+    var total = 0;
+    var summary = "Resumen de pedido:\n\n";
+
+    for (var i = 0; i < cartItems.length; i++) {
+      var item = cartItems[i];
+      var subtotal = item.price * item.quantity;
+
+      summary += "Producto: " + item.name + "\n";
+      summary += "Cantidad: " + item.quantity + "\n";
+      summary += "Precio unitario: " + item.price + "€\n";
+      summary += "Subtotal: " + subtotal + "€\n\n";
+
+      total += subtotal;
+    }
+
+    summary += "Total importe del pedido: " + total + "€\n\n";
+
+    var resumenPedidoElement = document.getElementById("pedido-resumen");
+    resumenPedidoElement.textContent = summary;
+  </script>
+</body>
+</html>

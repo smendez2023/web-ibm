@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resumen de Pedidos</title>
+  <link rel="stylesheet" href="css/main.css">
+  <script>
+    function toggleDetails(userId) {
+      var detailRow = document.getElementById("details-" + userId);
+      if (detailRow.style.display === "none" || detailRow.style.display === "") {
+        detailRow.style.display = "table-row";
+      } else {
+        detailRow.style.display = "none";
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="imagenes/BARNA.png" alt="Logo de BarnaBurguer" class="logo">
+      <h1>Resumen de pedidos</h1>
+    </div>
+  </header>
+
+  <h2>Cuadro Resumen de Usuarios</h2>
+  <table>
+    <tr>
+      <th>ID Usuario</th>
+      <th>Fecha de Entrega</th>
+      <th>Importe Total</th>
+      <th>Status de Pedido</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2023-07-20</td>
+      <td>40.00</td>
+      <td>Pendiente</td>
+      <td><button onclick="toggleDetails(1)">Ver detalles</button></td>
+    </tr>
+  </table>
+
+  <h2>Detalle de Pedidos</h2>
+  <table>
+    <tr>
+      <th>ID del Pedido</th>
+      <th>Fecha</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+    </tr>
+    <tr id="details-1" style="display:none;">
+      <td>1</td>
+      <td>2023-07-15</td>
+      <td>hamburguesa</td>
+      <td>2</td>
+      <td>20.00</td>
+    </tr>
+  </table>
+</body>
+</html>

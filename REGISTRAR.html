@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>REGISTRO</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <script>
+        // Funciones para mostrar formularios
+        function showForm(formId) {
+            const formIds = ['facebookForm', 'gmailForm', 'personalForm'];
+            formIds.forEach(id => document.getElementById(id).style.display = 'none');
+            document.getElementById(formId).style.display = 'block';
+        }
+
+        // Funciones para validar y enviar formularios
+        function validateAndSubmit(formType) {
+            let emailInput;
+            if (formType === 'gmail') {
+                emailInput = document.getElementById('gmailUser').value;
+                if (!emailInput.endsWith('@gmail.com')) {
+                    alert('Revisa el correo, debe terminar en @gmail.com para Gmail.');
+                    return;
+                }
+            } else if (formType === 'facebook') {
+                emailInput = document.getElementById('facebookUser').value;
+                if (!emailInput.endsWith('@hotmail.com')) {
+                    alert('Revisa el correo, debe terminar en @hotmail.com para Facebook.');
+                    return;
+                }
+            }
+            alert('Le hemos enviado un mail de confirmación, por favor, revisa tu correo, para confirmarnos tu dirección. Gracias.');
+        }
+
+        // Funciones de validación
+        function validatePhone(phoneId) {
+            const phoneInput = document.getElementById(phoneId);
+            const phoneValue = phoneInput.value.replace(/\D/g, '');
+            if (phoneValue.length !== 9) {
+                alert('Por favor, revisa el número de teléfono. Debe contener 9 dígitos.');
+                phoneInput.focus();
+            }
+        }
+
+        function is18YearsOld(dateString) {
+            const birthDate = new Date(dateString);
+            const currentDate = new Date();
+            const age = currentDate.getFullYear() - birthDate.getFullYear();
+            const monthDiff = currentDate.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && currentDate.getDate() < birthDate.getDate())) {
+                return age - 1;
+            }
+            return age;
+        }
+
+        function validateForm() {
+            const birthDate = document.getElementById('fechaNacimiento').value;
+            if (is18YearsOld(birthDate) < 18) {
+                alert('No podemos dar de alta hasta la mayoría de edad. Disculpa las molestias.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="imagenes/BARNA.png" alt="Logo de BarnaBurguer" class="logo">
+            <h1>Registro de Usuario nuevo</h1>
+        </div>
+    </header>
+    <h2>Únete a Barnaburguer y disfruta de las ventajas del club.</h2>
+
+    <!-- Botón y formulario de Facebook -->
+    <button class="register-btn" onclick="showForm('facebookForm')">
+        <i class="fab fa-facebook-f"></i> Registrarse con Facebook
+    </button>
+    <div id="facebookForm" style="display: none;">
+        <label for="facebookUser">Usuario de Facebook:</label>
+        <input type="text" id="facebookUser">
+        <label for="facebookPass">Contraseña:</label>
+        <input type="password" id="facebookPass">
+        <input type="button" value="Enviar" onclick="validateAndSubmit('facebook')">
+    </div>
+
+    <!-- Botón y formulario de Gmail -->
+    <button class="register-btn" onclick="showForm('gmailForm')">
+        <i class="fab fa-google"></i> Registrarse con Gmail
+    </button>
+    <div id="gmailForm" style="display: none;">
+        <label for="gmailUser">Usuario de Gmail:</label>
+        <input type="text" id="gmailUser">
+        <label for="gmailPass">Contraseña:</label>
+        <input type="password" id="gmailPass">
+        <input type="button" value="Enviar" onclick="validateAndSubmit('gmail')">
+    </div>
+<!-- Botón y formulario de datos personales -->
+<button class="register-btn" onclick="showForm('personalForm')">Registrarse con Datos personales</button>
+<form id="personalForm" style="display: none;" onsubmit="return validateForm();">
+    <label for="personalName">Nombre:</label>
+    <input type="text" id="personalName" required>
+
+    <label for="apellido1">Apellido 1:</label>
+    <input type="text" id="apellido1" required>
+
+    <label for="apellido2">Apellido 2:</label>
+    <input type="text" id="apellido2" required>
+
+    <label for="movil">Móvil:</label>
+    <input type="tel" id="movil" required onblur="validatePhone('movil')">
+
+    <label for="telefono2">Teléfono 2:</label>
+    <input type="tel" id="telefono2" onblur="validatePhone('telefono2')">
+
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" required>
+
+    <label for="tipoVia">Tipo de Vía:</label>
+    <select id="tipoVia" required>
+        <!-- Estos son algunos ejemplos, podrías agregar más tipos de vías -->
+        <option value="calle">Calle</option>
+        <option value="avenida">Avenida</option>
+        <option value="plaza">Plaza</option>
+        <option value="carretera">Carretera</option>
+    </select>
+
+    <label for="calle">Calle:</label>
+    <!-- Deberías conectar esto a un callejero API para obtener las calles de Barcelona -->
+    <input type="text" id="calle" list="callesBarcelona" required>
+    <datalist id="callesBarcelona">
+        <!-- Estos son solo ejemplos, se deben reemplazar con datos reales -->
+        <option value="Las Ramblas">
+        <option value="Passeig de Gracia">
+        <!-- ... -->
+    </datalist>
+
+    <label for="cp">Código Postal:</label>
+    <!-- De igual forma, podrías conectar esto a un API para obtener los códigos postales -->
+    <input type="text" id="cp" list="codigosBarcelona" required>
+    <datalist id="codigosBarcelona">
+        <!-- Estos son solo ejemplos, se deben reemplazar con datos reales -->
+        <option value="08001">
+        <option value="08002">
+        <!-- ... -->
+    </datalist>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+
+    
+    <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+    <input type="date" id="fechaNacimiento" required>
+    <input type="submit" value="Enviar">
+</div>
+
+</body>
+</html>

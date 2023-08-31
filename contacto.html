@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulario de contacto</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    .primary-color {
+        color: #CB463B;
+    }
+
+    /* Añadido el margen al lado derecho de los input, textarea y select */
+    input[type="text"], input[type="tel"], input[type="email"], textarea, select {
+        margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="imagenes/BARNA.png" alt="Logo de BarnaBurguer" class="logo">
+      <h1>Formulario de contacto</h1>
+    </div>
+  </header>
+  <form action="enviar_correo.php" method="POST" onsubmit="return validarFormulario()">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" id="apellidos" name="apellidos" required>
+
+    <label for="telefono">Teléfono móvil:</label>
+    <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}" required>
+
+    <label for="mail">Mail:</label>
+    <input type="email" id="mail" name="mail" required>
+
+    <label for="motivo">Motivo de contacto:</label>
+    <select id="motivo" name="motivo">
+      <option value="pedidos">Pedidos</option>
+      <option value="error_pedidos">Error en Pedidos</option>
+      <option value="consultas">Consultas</option>
+      <option value="otros-comentarios">Otros</option>
+    </select>
+
+    <label for="comentarios">Comentarios (máximo 250 palabras):</label>
+    <textarea id="comentarios" name="comentarios" rows="4" maxlength="250" required></textarea>
+
+    <label for="acepta_privacidad">
+      <input type="checkbox" id="acepta_privacidad" name="acepta_privacidad" required>
+      Acepto la <span class="link primary-color" onclick="mostrarPoliticaPrivacidad()">política de privacidad</span>
+    </label>
+  
+    <label for="acepta_lopd">
+      <input type="checkbox" id="acepta_lopd" name="acepta_lopd" required>
+      Acepto la <span class="link primary-color" onclick="mostrarLOPD()">LOPD</span>
+    </label>
+
+    <button type="submit">Enviar</button>
+    <p id="error-message" class="error-message"></p>
+  </form>
+
+  <script>
+    function validarFormulario() {
+      var privacidad = document.getElementById("acepta_privacidad");
+      var lopd = document.getElementById("acepta_lopd");
+
+      if (!privacidad.checked || !lopd.checked) {
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.textContent = "Es necesario aceptar ambas políticas para poder enviar el formulario.";
+        return false;
+      }
+
+      return true;
+    }
+
+    function mostrarPoliticaPrivacidad() {
+      window.location.href = "politica.html";
+    }
+
+    function mostrarLOPD() {
+      window.location.href = "lopd.html";
+    }
+  </script>
+</body>
+</html>

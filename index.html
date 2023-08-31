@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BarnaBurguer</title>
+        <link rel="stylesheet" href="css/main.css">
+    <script>
+        // Función para crear una cookies
+        function setCookie(name, value, days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        // Función para obtener el valor de una cookie
+        function getCookie(name) {
+            const value = "; " + document.cookie;
+            const parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+
+        // Función para aceptar cookies
+        function aceptarCookies() {
+            const userChoice = document.getElementById('select-cookies').value;
+            setCookie('userCookieChoice', userChoice, 365);  // Guardamos la elección del usuario durante 1 año
+            document.getElementById('banner-cookies').style.display = 'none';  // Ocultamos el banner
+        }
+        // Función para denegar cookies
+        function denegarCookies() {
+            setCookie('userCookieChoice', 'denied', 365);  // Guardamos la elección de "denegar" del usuario durante 1 año
+            document.getElementById('banner-cookies').style.display = 'none';  // Ocultamos el banner
+        }
+        // Verificar la decisión previa del usuario sobre las cookies
+        window.onload = function() {
+            const userDecision = getCookie('userCookieChoice');
+            if (!userDecision) {
+                document.getElementById('banner-cookies').style.display = 'block';  // Mostramos el banner si el usuario no ha tomado una decisión anteriormente
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="imagenes/BARNA.png" alt="Logo de BarnaBurguer">
+            <h1>Bienvenido a BarnaBurguer</h1>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>¡Descubre nuestras deliciosas hamburguesas, vive una experiencia culinaria inolvidable, donde cada bocado es una explosión de sabor!</h2>
+            <a href="REGISTRAR.html" class="explorar-boton">Nuevo-Registrate</a>
+            <a href="iniciosesion.html" class="explorar-boton">Identificate</a>
+            <a href="menu.html" class="explorar-boton">Menu y Pedidos</a>
+            <a href="pedidos.html" class="explorar-boton">Historial de Pedidos</a>
+           
+            </a>
+            <div>
+                <img src="imagenes/burguer.jpg" alt="Imagen de hamburguesa">
+            </div>
+        </section>
+
+        <section>
+            <h2 style="margin-top: 30px; text-align: center;">Nuestras hamburguesas están elaboradas con productos gourmet. Creadas con pasión y atención al detalle, asegurando que cada bocado sea una experiencia.</h2>
+        </section>
+    </main>
+
+    <footer class="barra-inferior">
+        <nav>
+            <a href="politica.html" class="boton-barra">Política de privacidad</a>
+            <a href="cookies.html" class="boton-barra">Cookies</a>
+            <a href="contacto.html" class="boton-barra">Contacto</a>
+            <a href="lopd.html" class="boton-barra">LOPD</a>
+            <a href="quienes.html" class="boton-barra">Quiénes Somos</a>
+            <a href="trabaja.html" class="boton-barra">Trabaja en BarnaBurguer</a>
+        </nav>
+        <div class="redes-sociales">
+            <p style="color: #FFE7BE;">Síguenos en nuestras redes sociales:</p>
+            <a href="https://www.facebook.com/BarnaBurguer" target="_blank"><img src="imagenes/Facebook.png" alt="Icono de Facebook"></a>
+            <a href="https://www.instagram.com/BarnaBurguer" target="_blank"><img src="imagenes/instagram.png" alt="Icono de Instagram"></a>
+            <a href="https://www.twitter.com/BarnaBurguer" target="_blank"><img src="imagenes/twitter.png" alt="Icono de Twitter"></a>
+        </div>
+    </footer>
+
+    <div id="banner-cookies" class="cookies-banner">
+        <p>Este sitio web utiliza cookies. Al continuar utilizando el sitio, aceptas el uso de cookies.</p>
+        <a href="cookies.html">Leer más sobre nuestras cookies</a>
+        <select id="select-cookies">
+            <option value="necesarias">Solo cookies necesarias</option>
+            <option value="completas">Todas las cookies</option>
+        </select>
+        <button onclick="aceptarCookies()">Aceptar</button>
+        <button onclick="denegarCookies()">Denegar</button>
+    </div>
+</body>
+
+</html>

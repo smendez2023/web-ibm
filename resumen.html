@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resumen de Pedido</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+    <img src="imagenes/BARNA.png" alt="Logo de BarnaBurguer" class="logo">
+    <h1>Resumen de Pedido</h1>
+  </header>
+
+  <div class="resumen-screen">
+    <h2>Continuar como:</h2>
+    <pre id="pedido-resumen"></pre>
+    <div class="button-container">
+      <button onclick="continueAsInvitado()">invitado</button>
+      <button onclick="continueAsRegistrado()">registrado</button>
+    </div>
+  </div>
+
+  <script>
+    function continueAsInvitado() {
+      window.location.href = "invitado.html";
+    }
+
+    function continueAsRegistrado() {
+      window.location.href = "registrado.html";
+    }
+
+    // Obtener el resumen del pedido almacenado en la sesión
+    var cartItems = JSON.parse(sessionStorage.getItem("cartItems"));
+    var total = 0;
+    var summary = "Resumen de pedido:\n\n";
+
+    for (var i = 0; i < cartItems.length; i++) {
+      var item = cartItems[i];
+      var subtotal = item.price * item.quantity;
+
+      summary += "Producto: " + item.name + "\n";
+      summary += "Cantidad: " + item.quantity + "\n";
+      summary += "Precio unitario: " + item.price + "€\n";
+      summary += "Subtotal: " + subtotal + "€\n\n";
+
+      total += subtotal;
+    }
+
+    summary += "Total importe del pedido: " + total + "€\n\n";
+
+    var resumenPedidoElement = document.getElementById("pedido-resumen");
+    resumenPedidoElement.textContent = summary;
+  </script>
+</body>
+</html>

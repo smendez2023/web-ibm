@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>REGISTRO</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!DOCTYPE html>
+    <html>
+    
+    <head>
+        <title>INICIO DE SESIÓN</title>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    
+        <script>
+            // Función para mostrar formularios
+            function showForm(formId) {
+                const formIds = ['facebookForm', 'gmailForm'];
+                formIds.forEach(id => document.getElementById(id).style.display = 'none');
+                document.getElementById(formId).style.display = 'block';
+            }
+    
+            // Funciones para validar y enviar formularios
+            function validateAndSubmit(formType) {
+                let emailInput;
+                if (formType === 'gmail') {
+                    emailInput = document.getElementById('gmailUser').value;
+                    if (!emailInput.endsWith('@gmail.com')) {
+                        alert('Revisa el correo, debe terminar en @gmail.com para Gmail.');
+                        return;
+                    }
+                } else if (formType === 'facebook') {
+                    // Si necesitas validaciones adicionales para Facebook, puedes incluirlas aquí
+                }
+                
+                alert('Has iniciado sesión exitosamente');
+                window.location.href = 'index.html';
+            }
+        </script>
+    </head>
+    
+    <body>
+        <header>
+            <div class="logo-container">
+                <img src="imagenes/BARNA.png" alt="Logo de BarnaBurguer" class="logo">
+                <h1>Inicio de Sesión</h1>
+            </div>
+        </header>
+        <h2>Inicia sesión y disfruta de las ventajas del club Barnaburguer.</h2>
+    
+        <!-- Botón y formulario de Facebook -->
+        <button class="register-btn" onclick="showForm('facebookForm')">
+            <i class="fab fa-facebook-f"></i> Iniciar con Facebook
+        </button>
+        <div id="facebookForm" style="display: none;">
+            <label for="facebookUser">Usuario de Facebook:</label>
+            <input type="text" id="facebookUser">
+            <label for="facebookPass">Contraseña:</label>
+            <input type="password" id="facebookPass">
+            <input type="button" value="Enviar" onclick="validateAndSubmit('facebook')">
+        </div>
+    
+        <!-- Botón y formulario de Gmail -->
+        <button class="register-btn" onclick="showForm('gmailForm')">
+            <i class="fab fa-google"></i> Iniciar con Gmail
+        </button>
+        <div id="gmailForm" style="display: none;">
+            <label for="gmailUser">Usuario de Gmail:</label>
+            <input type="text" id="gmailUser">
+            <label for="gmailPass">Contraseña:</label>
+            <input type="password" id="gmailPass">
+            <input type="button" value="Enviar" onclick="validateAndSubmit('gmail')">
+        </div>
+    
+    </body>
+    </html>
+    
+    

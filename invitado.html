@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulario de Envío - Invitado</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="imagenes/BARNA.png" alt="Logo de BarnaBurguer" class="logo">
+      <h1>Invitado</h1>
+    </div>
+  </header>
+  <h1>Formulario de Envío </h1>
+  
+  <form action="procesar_pedido.php" method="post">
+    <input type="hidden" id="total-pedido" name="total-pedido" value="<!-- Aquí debes imprimir el total del pedido -->">
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" id="apellidos" name="apellidos" required>
+
+    <label for="telefono-movil">Teléfono Móvil:</label>
+    <input type="tel" id="telefono-movil" name="telefono-movil" required>
+
+    <label for="direccion">Dirección de entrega:</label>
+    <input type="text" id="direccion" name="direccion" required>
+
+    <label for="confirmar-direccion">Confirmar dirección:</label>
+    <input type="text" id="confirmar-direccion" name="confirmar-direccion" required>
+
+    <label for="metodo-pago">Método de Pago:</label>
+    <label><input type="radio" name="metodo-pago" value="bizzum" required> Bizzum</label>
+    <label><input type="radio" name="metodo-pago" value="visa" required onclick="showVisaFields()"> Visa</label>
+    <label><input type="radio" name="metodo-pago" value="efectivo" required> Efectivo</label>
+
+    <div class="visa-fields">
+      <label for="nombre-visa">Nombre en la tarjeta Visa:</label>
+      <input type="text" id="nombre-visa" name="nombre-visa" required>
+
+      <label for="fecha-caducidad-visa">Fecha de caducidad:</label>
+      <input type="text" id="fecha-caducidad-visa" name="fecha-caducidad-visa" required>
+
+      <label for="numero-tarjeta-visa">Número de tarjeta Visa:</label>
+      <input type="text" id="numero-tarjeta-visa" name="numero-tarjeta-visa" required>
+    </div>
+
+    <input type="submit" value="Proceder al Pago">
+  </form>
+
+  <script>
+    function showVisaFields() {
+      var visaFields = document.getElementsByClassName("visa-fields")[0];
+      var visaRadio = document.querySelector('input[name="metodo-pago"][value="visa"]');
+      
+      if (visaRadio.checked) {
+        visaFields.style.display = "block";
+      } else {
+        visaFields.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Menú</title>
+  <link rel="stylesheet" href="css/main.css">
+ <script>
+  var cartItems = [];
+  var previousCartItems = [];
+
+  function addToCartWithQuantity(productName, price, quantityInputId) {
+    var quantity = parseInt(document.getElementById(quantityInputId).value);
+    var item = { name: productName, price: price, quantity: quantity };
+    cartItems.push(item);
+    console.log('Producto agregado a la cesta:', item);
+  }
+
+  function goToSummaryPage() {
+    // Guardar los valores del carrito actual en el carrito anterior
+    previousCartItems = [...cartItems];
+
+    var total = 0;
+    var summary = "Resumen de pedido:\n\n";
+    
+    for (var i = 0; i < cartItems.length; i++) {
+      var item = cartItems[i];
+      var subtotal = item.price * item.quantity;
+      
+      summary += "Producto: " + item.name + "\n";
+      summary += "Cantidad: " + item.quantity + "\n";
+      summary += "Precio unitario: " + item.price + "€\n";
+      summary += "Subtotal: " + subtotal + "€\n\n";
+      
+      total += subtotal;
+    }
+    
+    summary += "Total importe del pedido: " + total + "€\n\n";
+    
+    console.log('Resumen del pedido:', summary);
+    
+    // Mostrar el resumen del pedido en la ventana emergente
+    var resumenPedidoElement = document.getElementById('pedido-resumen');
+    resumenPedidoElement.textContent = summary;
+    document.getElementById('resumen-pedido').style.display = "block";
+  }
+
+  function returnToMenu() {
+    // Volver a la página del menú
+    window.location.href = "menu.html";
+  }
+
+  function continueAsGuest() {
+    // Ir a la pantalla de resumen del pedido
+    window.location.href = "resumen.html";
+  }
+  
+  function loadCartItems() {
+    // Restaurar los valores del carrito anterior al carrito actual
+    cartItems = previousCartItems.slice();
+    
+    // Actualizar las unidades en los campos de entrada
+    for (var i = 0; i < cartItems.length; i++) {
+      var item = cartItems[i];
+      var inputId = 'quantity-' + item.name.toLowerCase().replace(/ /g, '-');
+      var inputElement = document.getElementById(inputId);
+      if (inputElement) {
+        inputElement.value = item.quantity;
+      }
+    }
+  }
+
+  // Cargar los elementos del carrito al cargar la página
+  window.addEventListener('DOMContentLoaded', function() {
+    loadCartItems();
+  });
+</script>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="imagenes/BARNA.png" alt="Logo de BarnaBurguer" class="logo">
+      <h1>Nuestro Menú</h1>
+    </div>
+  </header>
+
+  <h2>Nuestras hamburguesas</h2>
+  <div class="product">
+    <h3>Hamburguesa Clásica</h3>
+    <img src="imagenes/h.completa.jpg" alt="Hamburguesa Clásica">
+    <p>Deliciosa hamburguesa con carne de ternera, lechuga, tomate y queso cheddar.</p>
+    <p>Precio: 10.99€</p>
+    <input type="number" id="quantity-hamburguesa-clasica" min="1" max="5" value="0">
+    <button class="add-to-cart" onclick="addToCartWithQuantity('Hamburguesa Clásica', 10.99, 'quantity-hamburguesa-clasica')">Agregar a la cesta</button>
+  </div>
+
+  <div class="product">
+    <h3>Hamburguesa de Pollo</h3>
+    <img src="imagenes/h.pollo.jpg" alt="Hamburguesa Pollo">
+    <p>Deliciosa hamburguesa con carne de pollo crujiente, lechuga, tomate y queso cheddar.</p>
+    <p>Precio: 9.99€</p>
+    <input type="number" id="quantity-hamburguesa-pollo" min="1" max="5" value="0">
+    <button class="add-to-cart" onclick="addToCartWithQuantity('Hamburguesa de Pollo', 9.99, 'quantity-hamburguesa-pollo')">Agregar a la cesta</button>
+  </div>
+
+  <div class="product">
+    <h3>Hamburguesa Vegana</h3>
+    <img src="imagenes/h.vegana.jpg" alt="Hamburguesa vegana">
+    <p>Deliciosa hamburguesa elaborada con Seitán y quinoa, acompañada de lechuga, tomate y aguacate.</p>
+    <p>Precio: 9.99€</p>
+    <input type="number" id="quantity-hamburguesa-vegana" min="1" max="5" value="0">
+    <button class="add-to-cart" onclick="addToCartWithQuantity('Hamburguesa Vegana', 9.99, 'quantity-hamburguesa-vegana')">Agregar a la cesta</button>
+  </div>
+
+  <h2>Ensaladas y complementos</h2>
+  <div class="product">
+    <h3>Ensalada César</h3>
+    <img src="imagenes/ensalada.jpg" alt="Ensalada completa">
+    <p>Mezcla de lechugas frescas, pollo a la parrilla, crutones y aderezo César.</p>
+    <p>Precio: 8.99€</p>
+    <input type="number" id="quantity-ensalada-cesar" min="1" max="5" value="0">
+    <button class="add-to-cart" onclick="addToCartWithQuantity('Ensalada César', 8.99, 'quantity-ensalada-cesar')">Agregar a la cesta</button>
+  </div>
+
+  <div class="product">
+    <h3>Gazpacho</h3>
+    <img src="imagenes/gazpacho.jpg" alt="gazpacho">
+    <p>Gazpacho elaborado con pepino, pimiento, tomate, aceite y vinagre.</p>
+    <p>Precio: 4.99€</p>
+    <input type="number" id="quantity-gazpacho" min="1" max="5" value="0">
+    <button class="add-to-cart" onclick="addToCartWithQuantity('Gazpacho', 4.99, 'quantity-gazpacho')">Agregar a la cesta</button>
+  </div>
+
+  <div class="product">
+    <h3>Patatas Fritas</h3>
+    <img src="imagenes/f.especial.jpg" alt="Patatas especiales">
+    <p>Crujientes patatas fritas sazonadas con sal y especias.</p>
+    <p>Precio: 3.99€</p>
+    <input type="number" id="quantity-patatas-fritas" min="1" max="5" value="0">
+    <button class="add-to-cart" onclick="addToCartWithQuantity('Patatas Fritas', 3.99, 'quantity-patatas-fritas')">Agregar a la cesta</button>
+  </div>
+
+  <h2>Bebidas</h2>
+  <div class="product">
+    <h3>Coca Cola</h3>
+    <img src="imagenes/cocac.jpg" alt="Bebidas con Gas">
+    <p>Precio: 1.99€</p>
+    <input type="number" id="quantity-coca-cola" min="1" max="5" value="0">
+    <button class="add-to-cart" onclick="addToCartWithQuantity('Coca Cola', 1.99, 'quantity-coca-cola')">Agregar a la cesta</button>
+  </div>
+
+  <div class="product">
+    <h3>Zumos Naturales</h3>
+    <img src="imagenes/zumonar.jpg" alt="Zumos naturales">
+    <p>Zumo natural de naranjas Valencianas, recién exprimido.</p>
+    <p>Precio: 2.99€</p>
+    <input type="number" id="quantity-zumos-naturales" min="1" max="5" value="0">
+    <button class="add-to-cart" onclick="addToCartWithQuantity('Zumos Naturales', 2.99, 'quantity-zumos-naturales')">Agregar a la cesta</button>
+  </div>
+
+  <h2>Postres</h2>
+  <div class="product">
+    <h3>Cheesecake</h3>
+    <img src="imagenes/chese.jpg" alt="Cheesecake">
+    <p>Precio: 4.99€</p>
+    <input type="number" id="quantity-cheesecake" min="1" max="5" value="0">
+    <button class="add-to-cart" onclick="addToCartWithQuantity('Cheesecake', 4.99, 'quantity-cheesecake')">Agregar a la cesta</button>
+  </div>
+
+  <div class="product">
+    <h3>Tarta de Manzana</h3>
+    <img src="imagenes/manzana.jpg" alt="Tarta de Manzana">
+    <p>Precio: 2.99€</p>
+    <input type="number" id="quantity-tarta-manzana" min="1" max="5" value="0">
+    <button class="add-to-cart" onclick="addToCartWithQuantity('Tarta de Manzana', 2.99, 'quantity-tarta-manzana')">Agregar a la cesta</button>
+  </div>
+
+  <button onclick="goToSummaryPage()" style="background-color: #CB463B; color: #FFF;">Ir a resumen del pedido</button>
+
+  <div id="resumen-pedido" class="resumen-pedido">
+    <h3>Resumen de pedido</h3>
+    <pre id="pedido-resumen"></pre>
+    <button onclick="returnToMenu()">Anular Pedido</button>
+    <button onclick="continueAsGuest()">Continuar</button>
+  </div>
+
+</body>
+</html>
